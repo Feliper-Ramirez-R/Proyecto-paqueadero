@@ -1,0 +1,226 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+
+
+{% block content %}
+
+
+
+<h4  class="center-align title_inicio">Parqueadero</h4>
+
+
+<br><br>
+
+<div class="container">
+   <a href="#idmodal_bici" class="btn modal-trigger"><i class="material-icons left">directions_bike</i>{{bici|length}}
+      Días</a>
+
+   <!--Modals para ver dias registrados-->
+   <div id="idmodal_bici" class="modal">
+
+      <div class="modal-content">
+<!--Dias en bici -->
+         {% if bici|length == 0 %}
+         <h4>No tienes ningun registro</h4>
+         {% else %}
+         <h4>Estos son los {{bici|length}} días registrados</h4>
+         {% endif %}
+<!--Fechas de registros en bici -->
+         {% for bici in bici %}
+         <p> {{bici.date | date:"D d M "}}</p>
+         {% endfor %}
+<!--Tope de auxilio -->
+         {% if bici|length < 15 %}
+         <h5>{{usuario.first_name}} tu beneficio es: ${{acum_bici}}</h5>
+         {% else %}
+         <h5>{{usuario.first_name}} tu beneficio es: $ 150000</h5>
+         {% endif %}
+
+      </div>
+      <div class="modal-footer">
+         <a href="#" class="btn modal-close"><i class="material-icons left">close</i>Cerrar</a>
+      </div>
+   </div>
+
+
+   <a href="#idmodal_moto" class="btn modal-trigger" id="boton2"><i
+         class="material-icons left">motorcycle</i>{{moto|length}} Días</a>
+
+   <div id="idmodal_moto" class="modal">
+
+      <div class="modal-content">
+<!--Dias en moto -->
+         {% if moto|length == 0 %}
+         <h4>No tienes ningun registro</h4>
+         {% else %}
+         <h4>Estos son los {{moto|length}} días registrados</h4>
+         {% endif %}
+<!--Fechas de registro en moto -->
+         {% for moto in moto %}
+         <p> {{moto.date | date:"D d M "}}</p>
+         {% endfor %}
+         <h5>{{usuario.first_name}} tu valor a pagar es: ${{acum_moto}}</h5>
+
+      </div>
+      <div class="modal-footer">
+         <a href="#" class="btn modal-close">Aceptar</a>
+
+      </div>
+   </div>
+
+
+   <a href="#idmodal_carro" class="btn modal-trigger" id="boton3"><i
+         class="material-icons left">directions_car</i>{{carro|length}}
+      Días</a>
+
+
+
+   <div id="idmodal_carro" class="modal">
+
+      <div class="modal-content">
+<!--Dias en carro -->
+         {% if carro|length == 0 %}
+         <h4>No tienes ningun registro</h4>
+         {% else %}
+         <h4>Estos son los {{carro|length}} días registrados</h4>
+         {% endif %}
+<!--Fechas de registro en carro -->
+         {% for carro in carro %}
+         <p> {{carro.date | date:"D d M "}}</p>
+         {% endfor %}
+         <h5>{{usuario.first_name}} tu valor a pagar es: ${{acum_carro}}</h5>
+
+      </div>
+      <div class="modal-footer">
+         <a href="#" class="btn modal-close">Aceptar</a>
+      </div>
+   </div>
+
+<!--Historico de registros -->
+   <a id="btn_historico" class="btn dropdown-trigger" href="#!" data-target="dropdown2">historico<i
+         class="material-icons right">arrow_drop_down</i></a>
+   <ul id="dropdown2" class="dropdown-content">
+      <li><a href="#idmodal_julio" class="btn modal-trigger">mayo</a></li>
+      <li><a href="#idmodal_julio" class="btn modal-trigger">junio</a></li>
+      <li><a href="#idmodal_julio" class="btn modal-trigger">julio</a></li>
+      <li><a href="#idmodal_agosto" class="btn modal-trigger">agosto</a></li>
+
+   </ul>
+   <div id="idmodal_agosto" class="modal">
+
+      <div class="modal-content">
+
+         <table class="centered">
+            <thead>
+               <tr>
+                  <th>{{agosto|length}} días en bici</th>
+               </tr>
+            </thead>
+
+            <tbody>
+               {% for agosto in agosto %}
+               <tr>
+                  <td>{{agosto.date | date:"D d M "}}</td>
+               </tr>
+               {% endfor %}
+            </tbody>
+
+         <table class="centered">
+            <thead>
+               <tr>
+                  <th>{{agostoM|length}} días en moto</th>
+               </tr>
+            </thead>
+
+            <tbody>
+               {% for agostoM in agostoM %}
+               <tr>
+                  <td>{{agostoM.date | date:"D d M "}}</td>
+               </tr>
+               {% endfor %}
+            </tbody>
+
+         </table>
+
+         <table class="centered">
+            <thead>
+               <tr>
+                  <th>{{agostoC|length}} días en carro</th>
+               </tr>
+            </thead>
+
+            <tbody>
+               {% for agostoC in agostoC %}
+               <tr>
+                  <td>{{agostoC.date | date:"D d M "}}</td>
+               </tr>
+               {% endfor %}
+            </tbody>
+
+         </table>
+
+      </div>
+
+
+
+      <div class="modal-footer">
+         <a href="#" class="btn modal-close"><i class="material-icons left">close</i>Cerrar</a>
+      </div>
+   </div>
+
+   <div id="idmodal_julio" class="modal">
+
+      <div class="modal-content">
+
+         <h4>No tienes ningun registro</h4>
+
+      </div>
+      <div class="modal-footer">
+         <a href="#" class="btn modal-close"><i class="material-icons left">close</i>Cerrar</a>
+      </div>
+   </div>
+
+</div>
+
+
+
+<br><br><br><br>
+<div class="container">
+<!--Grid para mostrar en todo momento la deuda o el beneficio -->
+   <div class="row ">
+      <div class="col m4 card-panel teal lighten-2">
+         <p>{{bici|length}} dias en bici</p>
+      </div>
+      <div class="col m4 card-panel teal lighten-2">
+         <p>{{moto|length}} dias en moto</p>
+      </div>
+      <div class="col m4 card-panel teal lighten-2">
+         <p>{{carro|length}} dias en carro</p>
+      </div>
+   </div>
+   <div class="row ">
+      <div class="col m4 card-panel teal lighten-2">
+         <p>${{acum_bici}}</p>
+      </div>
+      <div class="col m4 card-panel teal lighten-2">
+         <p>${{acum_moto}}</p>
+      </div>
+      <div class="col m4 card-panel teal lighten-2">
+         <p>${{acum_carro}}</p>
+      </div>
+   </div>
+   <div class="row ">
+
+      <div>
+         <div class="col m12 teal lighten-2">
+            <p>{{mensaje}}</p>
+         </div>
+      </div>
+
+   </div>
+</div>
+<br><br>
+
+{% endblock %}

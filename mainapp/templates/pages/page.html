@@ -1,0 +1,19 @@
+{% extends 'layouts/layout.html' %}
+
+		{% block title %} {{title}} {% endblock %}
+
+		
+
+		 {% block content %}
+        
+      
+        <div class="container">
+		  <h2 class="title_inicio" >Bienvenid@ {{request.user.first_name|capfirst}}</h2>
+		  <h5 class="title_inicio">{{request.user.area.area}}</h5>
+		  <img id="imagen" src="{{request.user.imagen.image.url}}" alt="">
+		</div>
+
+	
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		 {% endblock %}

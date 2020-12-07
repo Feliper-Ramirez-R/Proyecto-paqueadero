@@ -1,0 +1,103 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+<h4 class="center-align title_inicio">Consultar Usuario</h4>
+
+<form action="" method="POST" class="container">
+  {% csrf_token %}
+
+  <div class="input-field col s12">
+    <input type="number" name="user_id" id="pip">
+    <label for="">Usuario</label>
+  </div>
+
+  <br><br><br><br>
+
+</form>
+
+<!--mostrar los dias registrados por usuario -->
+<div class="container">
+  <a href="#idmodal_bici" class="btn modal-trigger"><i class="material-icons left">directions_bike</i>{{bici|length}}
+    Días</a>
+
+<!--Modals para mostrar los dias registrados-->
+  <div id="idmodal_bici" class="modal">
+
+    <div class="modal-content">
+
+      {% if bici|length > 0 %} 
+      <h4>Estos son los {{bici|length}} días registrados</h4>
+      {% for bici in bici %}
+      <p> {{bici.date | date:"D d M "}}</p>
+      {% endfor %}
+      <h5>El beneficio de {{usuario.first_name|capfirst}} es: ${% widthratio precioBici 1 bici|length%}</h5>
+      {% else %}
+      <h4>No tienes ningun registro</h4>
+      {% endif %}
+
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn modal-close">Aceptar</a>
+
+    </div>
+  </div>
+
+
+  <a href="#idmodal_moto" class="btn modal-trigger" id="boton2"><i
+      class="material-icons left">motorcycle</i>{{moto|length}}
+    Días</a>
+
+  <div id="idmodal_moto" class="modal">
+
+    <div class="modal-content">
+
+      {% if moto|length > 0 %}
+      <h4>Estos son los {{moto|length}} días registrados</h4> 
+      {% for moto in moto %}
+      <p> {{moto.date | date:"D d M "}}</p>
+      {% endfor %}
+      <h5> El valor a cobrar a {{usuario.first_name|capfirst}} es: ${% widthratio moto|length 1 precio_moto%}</h5>
+      {% else %}
+      <h4>No tiene ningun registro</h4>
+      {% endif %}
+
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn modal-close">Aceptar</a>
+
+    </div>
+  </div>
+
+
+  <a href="#idmodal_carro" class="btn modal-trigger" id="boton3"><i
+      class="material-icons left">directions_car</i>{{carro|length}}
+    Días</a>
+
+
+  <div id="idmodal_carro" class="modal">
+
+    <div class="modal-content">
+
+      {% if carro|length > 0 %}  
+      <h4>Estos son los {{carro|length}} días registrados</h4>
+      {% for carro in carro %}
+      <p> {{carro.date | date:"D d M "}}</p>
+      {% endfor %}
+      <h5>El valor a cobrar a {{usuario.first_name|capfirst}} es: ${% widthratio precio_carro 1 carro|length%}</h5>
+      {% else %}
+      <h4>No tiene ningun registro</h4>
+      {% endif %}
+
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn modal-close">Aceptar</a>
+
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

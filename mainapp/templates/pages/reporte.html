@@ -1,0 +1,35 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+		
+
+{% block content %}
+ 
+
+<h4  class="center-align title_inicio" >Reportes Usuarios</h4>
+     
+    
+    <table class="centered">
+      <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Tipo de transporte</th>
+            <th>Fecha</th>
+            
+        </tr>
+      </thead>
+      {% for tra in trans %}
+      <tbody>
+        <tr>
+          <td>{{tra.user.first_name}}</td>
+          <td>{{tra.user.last_name}}</td>
+          <td>{{tra.tipo_transporte}}</td>
+          <td>{{tra.date}}</td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+    
+{% endblock %}

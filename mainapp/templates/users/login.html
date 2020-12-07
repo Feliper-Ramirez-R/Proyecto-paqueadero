@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		
+	</title>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet">
+</head>
+
+{% if messages %}
+{% for message in messages %}
+<div >
+ <script >
+   alert('{{ message }}');
+ </script>
+</div>
+{% endfor %}
+{% endif %} 
+        
+     <body id="body-login">
+         
+              
+            
+          <form id="form-login" method="post" action="" class="container">
+          	
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="username" type="text" name="username" required="required">
+                    <label for="username" >Usuario</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">offline_pin</i>
+                    <input id="password" type="password" name="password" class="validate-custom"required="required">
+                    <label for="password">Contraseña</label>
+                </div>
+            </div>
+            <div class="input-field col s12 m12 center" id="button-submit-login">
+                <button class="btn waves-effect waves-light" type="submit" name="action" value="submit">Ingresar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+                 
+          </form>
+          <br/> <br/> <br/> <br/> <br/> <br/> <br/>  
+          <footer id="footer" class="card-panel teal lighten-2">
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">Parqueadero</h5>
+                  <p class="grey-text text-lighten-4">Nuestro proposito es hacer tú vida más facil.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Información Importante</h5>
+                  <ul>
+                    <li><span class="grey-text text-lighten-3"><i class="material-icons">phone_in_talk</i> 01 8000 945-234</span></li>
+                    <li><span class="grey-text text-lighten-3"><i class="material-icons">email</i> parqueadero@mycompany.com</span></li>
+                    <li><span class="grey-text text-lighten-3"><i class="material-icons">map</i> Cra 1 #2 - 3</span></li>
+                    <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">question_answer</i> PQR</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright">
+              <div class="container">
+                Parqueadero- Desarrollado por Felipe Ramirez  &copy; {% now 'Y'%} Copyright
+                
+              </div>
+            </div>
+              
+            </footer>
+
+         
+        </body> 
+		

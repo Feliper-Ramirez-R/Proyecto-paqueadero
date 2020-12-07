@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    {% block title %}
+
+    {% endblock %}
+    - Parqueadero
+  </title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--inicializar los select de materialize -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('select').formSelect();
+    });
+  </script>
+
+<!--inicializar los modals de materialize -->
+  <script>
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+  </script>
+
+<!--inicializar las listas desplegables de materialize -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var options = {
+
+    };
+    var instances = M.Dropdown.init(elems, options);
+  });   
+</script>
+
+<!--inicializar el sidenav de materialize -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+</script>
+
+
+</head>
+
+<body>
+  <!--Barra de navegacion -->
+<div class = "navbar-fixed">
+  <nav>
+    <div class="nav-wrapper" >
+
+      <a href="{% url 'page' %}"> <img src="{% static 'images/moto.png' %}" id="logo"> </a>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        
+       
+        {% if request.user.area.area == 'Administrador' %} 
+        
+        <li><a href="{% url 'register' %}">Ingresar usuario</a></li>
+        <li><a href="{% url 'prueba' %}">Consultar usuario</a></li>
+        <li><a href="{% url 'reporte' %}">Reporte</a></li>
+        <li><a href="{% url 'transporte' %}">Registrar usuario</a></li> 
+        <li><a href="{% url 'pagos_mes' %}" >Pagos mensuales</a></li>
+        {%elif request.user.area.area == 'Porteria'%}
+        <li><a href="{% url 'transporte' %}">Registrar usuario</a></li> 
+        {% endif %}
+        <li><a href="{% url 'parqueadero' %}">Parqueadero</a></li>
+        <li><a href="{% url 'consultar' %}">Consultar imagen</a></li> 
+        <li><a href="{% url 'tarifas' %}">Tarifas</a></li>  
+      </ul>
+    </div>
+  </nav>
+</div>
+
+  <!--sidenav -->
+  
+<a id="side-nav" href="#" data-target="slide-out" class="sidenav-trigger"><i class="small material-icons">menu</i></a>
+<ul id="slide-out" class="sidenav">
+  <li><div class="user-view">
+    <div class="background">
+      <img src="{% static 'images/02.jpg' %}">
+    </div>
+    <a href="#idupdatefile" class="modal-trigger" ><img class="circle" src="{{request.user.imagen.image.url}}"></a>
+    <a href="#name"><span class="white-text name">{{request.user.first_name|capfirst}} {{request.user.last_name|capfirst}}</span></a>
+    <a href="#email"><span class="white-text email">{{request.user.email}}</span></a>
+  </div></li>
+  <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+  <li><a href="#!">Second Link</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">{{request.user.area.area}}</a></li>
+  <li><a class="waves-effect" href="{% url 'logout' %}">Cerrar sesion</a></li>
+</ul>
+
+<!--modal para cambiar la imagen -->
+<div class="container">
+<div id="idupdatefile" class="modal" style="width: 30%;">
+
+  <div class="modal-content" >
+
+   <form action="{% url 'save_image' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+     <label for="myfile">Imagen</label>
+     <input  type="file" id="myfile" name="myfile"><br><br>
+     <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+      <i class="material-icons right">send</i>
+    </button>
+   </form>
+
+  </div>
+  <div class="modal-footer">
+     <a href="#" class="btn modal-close"><i class="material-icons left">close</i></a>
+  </div>
+</div>
+</div>
+      
+  <div id="content" class="container">
+    {% block content %}
+    <!--codigo que viene de templates-->
+
+    {% endblock %}
+    
+  </div>
+
+  <!--footer -->
+  <footer id="footer" class="card-panel teal lighten-2">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Parqueadero</h5>
+        <p class="grey-text text-lighten-4">Nuestro proposito es hacer tú vida más facil.</p>
+        <a class="grey-text text-lighten-3" href="https://www.facebook.com/felipe.ramirezrestrepo/" target="blank"><img src="{% static 'images/logo_1.jpg' %}" style="width: 5%; margin-right: 10px;"  ></a>
+        <a class="grey-text text-lighten-3" href="https://www.instagram.com/pipe_ramirezre/?hl=es-la" target="blank"><img src="{% static 'images/logo_2.png' %}" style="width: 5%; margin-right: 10px;" ></a>
+        <a class="grey-text text-lighten-3" href="#!"><img src="{% static 'images/logo_3.png' %}" style="width: 5%;" ></a>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Información Importante</h5>
+        <ul>
+          <li><span class="grey-text text-lighten-3"><i class="material-icons">phone_in_talk</i> 01 8000 945-234</span></li>
+          <li><span class="grey-text text-lighten-3"><i class="material-icons">email</i> parqueadero@mycompany.com</span></li>
+          <li><span class="grey-text text-lighten-3"><i class="material-icons">map</i> Cra 1 #2 - 3</span></li>
+          <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">question_answer</i> PQR</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      Parqueadero- Desarrollado por Felipe Ramirez  &copy; {% now 'Y'%} Copyright
+      
+    </div>
+  </div>
+    
+  </footer>
+
+</body>
+
+
+</html>

@@ -1,0 +1,50 @@
+{% extends 'layouts/layout.html' %}
+
+		{% block title %} {{title}} {% endblock %}
+
+		
+
+		 {% block content %}
+        
+      <h4 class="center-align title_inicio" >Pagos del mes de Agosto</h4>
+           
+      
+      
+          
+          <div  class="container">
+
+            <div class="row ">
+               <div class="col m4 card-panel teal lighten-2">
+                  <p>{{AgostoB|length}} dias en bici</p>
+               </div>
+               <div class="col m4 card-panel teal lighten-2">
+                  <p>{{AgostoM|length}} dias en moto</p>
+               </div>
+               <div class="col m4 card-panel teal lighten-2">
+                  <p>{{AgostoC|length}} dias en carro</p>
+               </div>
+            </div>
+            <div class="row ">
+               <div class="col m4 card-panel teal lighten-2">
+                  <p>${{pagoAgostoB}}</p>
+               </div>
+               <div class="col m4 card-panel teal lighten-2">
+                  <p>${{pagoAgostoM}}</p>
+               </div>
+               <div class="col m4 card-panel teal lighten-2">
+                  <p>${{pagoAgostoC}}</p>
+               </div>
+            </div>
+            <div class="row ">
+         
+               <div>
+                  <div class="col m12 teal lighten-2">
+                     <p>{{mensaje}}</p>
+                  </div>
+               </div>
+         
+            </div>
+         </div>
+            
+<br><br><br><br><br><br><br><br><br><br>
+		 {% endblock %}

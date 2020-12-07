@@ -1,0 +1,105 @@
+
+
+@font-face{
+	font-family: "FANDANGO";
+	src: url("../fonts/Blackboard.ttf");
+}
+
+@font-face{
+	font-family: "Friday";
+	src: url("../fonts/Golf.otf");
+}
+
+nav .nav-wrapper {
+    position: relative;
+    height: 100%;
+    background: #4db6ac;
+}
+#logo{
+    width: 65px;
+    margin-left: 10px;
+}
+
+#footer{
+    text-align: center;
+    color: white;
+}
+.rojo{
+    color: red;
+}
+ul:not(.browser-default)>li {
+    list-style-type: none;
+    color: red;
+}
+#form-login{
+    background-color: white;
+    background-color: white;
+    width: 25%;
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 70px;
+}
+#body-login{
+    background-color: black;
+}
+[type="radio"]:not(:checked)+span, [type="radio"]:checked+span {
+    margin-right: 80px !important;
+}
+#id_user{
+    font-size: 17px;
+}
+
+#boton2{
+    margin-left: 55px !important;
+}
+
+#boton3{
+    margin-left: 55px !important;
+}
+#btn_historico{
+    margin-left: 55px !important;
+}
+
+
+.row .col.m4 { 
+    text-align: center;
+    color: white;
+}
+.row .col.m12 { 
+    text-align: center;
+    color: white;
+}
+#dropdown2 li a {
+    color: white;
+}
+#imagen{
+    width: 20%;
+   
+}
+#side-nav{
+    float: right;
+    color: black;
+    width: 60;
+    height: 50px;
+    position: fixed;
+}
+#idupdatefile modal{
+    width: 30 !important;
+}
+#query_image{
+width: 70%;
+display: block;
+margin: auto;
+border: 10px solid #4db6ac;
+}
+.title_inicio{
+    font-family: "FANDANGO";
+   
+}
+
+#content{
+	box-shadow: 0px 0px 40px black;
+	padding-top: 120px;
+}
+
+

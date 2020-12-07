@@ -1,0 +1,49 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% block title %}
+
+		{% endblock %}
+		- Parqueadero
+	</title>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet">
+</head>
+<body>
+	
+	<nav>
+    <div class="nav-wrapper" >
+      <a href="{% url 'inicio' %}" > <img src="{% static 'images/moto.png' %}" id="logo" > </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+       
+        <li><a href="{% url 'login' %}">Ingresar</a></li>
+       
+        
+      </ul>
+    </div>
+  </nav>
+ 
+<div id="content" class="container" >
+	<h1>Inicia sesion</h1>
+</div>
+
+	<footer id="footer" class="card-panel teal lighten-2" >
+		Parqueadero  &copy; Desarrollado por Felipe Ramirez - {% now 'Y'%}
+	</footer>
+</body>
+
+
+</html>
+

@@ -1,0 +1,53 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div>
+  <script>
+    alert('{{ message }}');
+  </script>
+</div>
+{% endfor %}
+{% endif %}
+
+<h4 class="center-align title_inicio">Crear Usuario</h4>
+
+
+
+{% if register_form.errors %}
+<div class="container">
+<strong class="rojo" >
+  UPS!! Tienes errores
+</strong>
+</div>
+{% endif %}
+
+
+
+
+<form method="POST" action="" class="container">
+
+  {% csrf_token %}
+
+
+
+
+  {{register_form.as_p}}
+
+
+  
+
+  <div class="input-field col s12 m12 center" id="button-submit-login">
+    <button class="btn waves-effect waves-light" type="submit" name="action" value="submit">Enviar
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
+</form>
+
+
+{% endblock %}
